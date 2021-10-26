@@ -12,6 +12,19 @@
 
 
 
+// 二进制0~1：0 1
+//      写法：±0b/0B + 0~1组合代码
+// 八进制0~7：0 1 2 3 4 5 6 7
+//      写法：±0 + 0~7组合代码
+// 十六进制0~9、a~f/A~F：0 1 2 3 4 5 6 7 8 9 a b c d e f
+//      写法：±0x/0X + 0~9、a~f组合代码
+
+
+// 十进制：
+// 有符号输出：%hd %d %ld  short int long
+// 无符号输出：%hu %u %lu  short int long
+
+
 // 【数组】作业 4）
 /*
 #include <stdio.h>
@@ -192,14 +205,33 @@ void func1()
 
 
 #include <stdio.h>
+#include <stdlib.h>
  
 int main()
 {
-  short si=9999999999;   // 短整数
-  signed int   ii;   // 整数
-  unsigned int  li;   // 长整数
- 
-  printf("sizeof short is %d\n",sizeof(short));
-  printf("sizeof int is %d\n",sizeof(signed int));
-  printf("sizeof long is %d\n",sizeof(unsigned int));
+	// int a2=0b00011001;
+	// int a8=031;
+	// int a10=25;
+	// int a16=0x25ac;
+	
+	// printf("二进制：%d\n八进制：%d\n十进制：%d\n十六进制：%d\n", a2, a8, a10, a16);
+	
+	// int i=32767;
+	// printf("i %hd, %d, %ld\n", i, i, i);
+	// int j=32767;
+	// printf("j %hu, %u, %lu\n", j, j, j);
+	
+	
+	int ii;
+	int jj;
+	
+	ii=atoi("-12164");
+	jj=atol("-64894654465416541");
+	printf("ii=%d\n", ii);
+	printf("jj=%ld\n", jj);
+	
+	ii=abs(ii);
+	jj=labs(jj);
+	printf("ii=%d\n", ii);
+	printf("ii=%ld\n", jj);
 }
