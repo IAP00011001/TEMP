@@ -1,31 +1,31 @@
-// %d ÕûĞÎ
-// %f/%lf ¸¡µãÊı/Ë«¾«¶È
-// %c/%s ×Ö·û/×Ö·û´®
-// %p µØÖ·
+// %d æ•´å½¢
+// %f/%lf æµ®ç‚¹æ•°/åŒç²¾åº¦
+// %c/%s å­—ç¬¦/å­—ç¬¦ä¸²
+// %p åœ°å€
 
-// *p == i  p == &i *p´æ·ÅµÄÊÇÒ»¸öÖµ£¬p´æ·ÅµÄÊÇ¸ÃÖµµÄÄÚ´æµØÖ·
+// *p == i  p == &i *på­˜æ”¾çš„æ˜¯ä¸€ä¸ªå€¼ï¼Œpå­˜æ”¾çš„æ˜¯è¯¥å€¼çš„å†…å­˜åœ°å€
 
-// signed int aa ÕıÊı/¸ºÊı ÕûĞÍaa
-// unsigned int aa ÕûĞÍaa
-// short int aa 4×Ö½Ú ¶ÌÕûĞÍaa
-// long int aa ³¤ÕûĞÍaa
-
-
-
-// ¶ş½øÖÆ0~1£º0 1
-//      Ğ´·¨£º¡À0b/0B + 0~1×éºÏ´úÂë
-// °Ë½øÖÆ0~7£º0 1 2 3 4 5 6 7
-//      Ğ´·¨£º¡À0 + 0~7×éºÏ´úÂë
-// Ê®Áù½øÖÆ0~9¡¢a~f/A~F£º0 1 2 3 4 5 6 7 8 9 a b c d e f
-//      Ğ´·¨£º¡À0x/0X + 0~9¡¢a~f×éºÏ´úÂë
+// signed int aa æ­£æ•°/è´Ÿæ•° æ•´å‹aa
+// unsigned int aa æ•´å‹aa
+// short int aa 4å­—èŠ‚ çŸ­æ•´å‹aa
+// long int aa é•¿æ•´å‹aa
 
 
-// Ê®½øÖÆ£º
-// ÓĞ·ûºÅÊä³ö£º%hd %d %ld  short int long
-// ÎŞ·ûºÅÊä³ö£º%hu %u %lu  short int long
+
+// äºŒè¿›åˆ¶0~1ï¼š0 1
+//      å†™æ³•ï¼šÂ±0b/0B + 0~1ç»„åˆä»£ç 
+// å…«è¿›åˆ¶0~7ï¼š0 1 2 3 4 5 6 7
+//      å†™æ³•ï¼šÂ±0 + 0~7ç»„åˆä»£ç 
+// åå…­è¿›åˆ¶0~9ã€a~f/A~Fï¼š0 1 2 3 4 5 6 7 8 9 a b c d e f
+//      å†™æ³•ï¼šÂ±0x/0X + 0~9ã€a~fç»„åˆä»£ç 
 
 
-// ¡¾Êı×é¡¿×÷Òµ 4£©
+// åè¿›åˆ¶ï¼š
+// æœ‰ç¬¦å·è¾“å‡ºï¼š%hd %d %ld  short int long
+// æ— ç¬¦å·è¾“å‡ºï¼š%hu %u %lu  short int long
+
+
+// ã€æ•°ç»„ã€‘ä½œä¸š 4ï¼‰
 /*
 #include <stdio.h>
 #include <string.h>
@@ -40,16 +40,16 @@ int main()
 	
 	for (counts=0; counts<rs; counts++)
 	{
-		printf("ÇëÊäÈëµÚ%dÎ»Ñ§ÉúµÄ³É¼¨£º", counts+1);
+		printf("è¯·è¾“å…¥ç¬¬%dä½å­¦ç”Ÿçš„æˆç»©ï¼š", counts+1);
 		scanf("%lf", &cj[counts]);
 		sum += cj[counts];
 	}
 	
-	printf("Õâ¸ö°àµÄ×Ü³É¼¨ÊÇ£º%lf£¬Æ½¾ù³É¼¨ÊÇ£º%lf", sum, sum/rs);
+	printf("è¿™ä¸ªç­çš„æ€»æˆç»©æ˜¯ï¼š%lfï¼Œå¹³å‡æˆç»©æ˜¯ï¼š%lf", sum, sum/rs);
 }
 */
 
-// ¡¾Êı×é¡¿×÷Òµ 5)
+// ã€æ•°ç»„ã€‘ä½œä¸š 5)
 /*
 #include <stdio.h>
 #include <string.h>
@@ -65,14 +65,14 @@ int main()
 	double sum=0;
 	double sum_all=0;
 	
-	printf("ÊäÈë¸ÃÄê¼¶µÄ°à¼¶Êı¡¢Ã¿¸ö°à¼¶µÄÈËÊı£»");
+	printf("è¾“å…¥è¯¥å¹´çº§çš„ç­çº§æ•°ã€æ¯ä¸ªç­çº§çš„äººæ•°ï¼›");
 	scanf("%d %d", &bj, &rs);
 	
 	for (c_bj=0; c_bj<bj; c_bj++)
 	{
 		for (c_rs=0; c_rs<rs; c_rs++)
 		{
-			printf("ÇëÊäÈë%d°àµÚ%dÈËµÄ³É¼¨ £º", c_bj+1, c_rs+1);
+			printf("è¯·è¾“å…¥%dç­ç¬¬%däººçš„æˆç»© ï¼š", c_bj+1, c_rs+1);
 			scanf("%lf", &cj[c_bj][c_rs]);
 			sum += cj[c_bj][c_rs];
 			sum_all += cj[c_bj][c_rs];
@@ -80,17 +80,17 @@ int main()
 			// printf("cj[c_bj][c_rs]=cj[%d][%d]=%lf      sum=%lf\n", c_bj, c_rs, cj[c_bj][c_rs], sum);
 		}
 		
-		printf("%d°àµÄ×Ü³É¼¨ÊÇ£º%lf£¬Æ½¾ù³É¼¨ÊÇ£º%lf\n\n", c_bj+1, sum, sum/rs);
+		printf("%dç­çš„æ€»æˆç»©æ˜¯ï¼š%lfï¼Œå¹³å‡æˆç»©æ˜¯ï¼š%lf\n\n", c_bj+1, sum, sum/rs);
 		sum = 0;
 	}
 	
-	printf("¸ÃÄê¼¶µÄ×Ü³É¼¨ÊÇ£º%lf£¬Æ½¾ù³É¼¨ÊÇ£º%lf", sum_all, sum_all/(bj*rs));
+	printf("è¯¥å¹´çº§çš„æ€»æˆç»©æ˜¯ï¼š%lfï¼Œå¹³å‡æˆç»©æ˜¯ï¼š%lf", sum_all, sum_all/(bj*rs));
 }
 */
 
 
 
-// ×÷Òµ 7)*****************Ã»µ÷Í¨******************
+// ä½œä¸š 7)*****************æ²¡è°ƒé€š******************
 /*
 #include <stdio.h>
 #include <string.h>
@@ -116,20 +116,20 @@ int main()
         {
             for (rs=0; rs<4; rs++)
             {
-                printf("ÇëÊäÈë%dÄê¼¶%d°àµÚ%dÃûÍ¬Ñ§µÄ³É¼¨£º", nj+1, bj+1, rs+1);
+                printf("è¯·è¾“å…¥%då¹´çº§%dç­ç¬¬%dååŒå­¦çš„æˆç»©ï¼š", nj+1, bj+1, rs+1);
                 scanf("lf", &school[nj][bj][rs]);
                 ver_bj[bj] += school[nj][bj][rs];
             }
    
             ver_nj[nj] += ver_bj[bj];
-			printf("%d°àµÄ×Ü³É¼¨ÊÇ£º%lf£¬Æ½¾ù³É¼¨ÊÇ £º%lf\n", bj+1, ver_bj[bj], ver_bj[bj]/4);
+			printf("%dç­çš„æ€»æˆç»©æ˜¯ï¼š%lfï¼Œå¹³å‡æˆç»©æ˜¯ ï¼š%lf\n", bj+1, ver_bj[bj], ver_bj[bj]/4);
         }
   
         ver_xj[0] += ver_nj[nj];
-		printf("%dÄê¼¶µÄ×Ü³É¼¨ÊÇ£º%lf£¬Æ½¾ù³É¼¨ÊÇ£º%lf\n", nj+1, ver_nj[nj], ver_nj[nj]/12);
+		printf("%då¹´çº§çš„æ€»æˆç»©æ˜¯ï¼š%lfï¼Œå¹³å‡æˆç»©æ˜¯ï¼š%lf\n", nj+1, ver_nj[nj], ver_nj[nj]/12);
     }
 	
-	printf("¸ÃÑ§Ğ£µÄ×Ü³É¼¨ÊÇ£º%lf£¬Æ½¾ù³É¼¨ÊÇ£º%lf\n", ver_xj[0], ver_xj[0]/24);
+	printf("è¯¥å­¦æ ¡çš„æ€»æˆç»©æ˜¯ï¼š%lfï¼Œå¹³å‡æˆç»©æ˜¯ï¼š%lf\n", ver_xj[0], ver_xj[0]/24);
  
 }
 */
@@ -145,7 +145,7 @@ int check_num(int num);
 int main()
 {
 	int cj=0;
-	printf("ÇëÊäÈëÄãµÄ³É¼¨£º");
+	printf("è¯·è¾“å…¥ä½ çš„æˆç»©ï¼š");
 	scanf("%d", &cj);
 	
 	check_num(cj);
@@ -154,10 +154,10 @@ int main()
 
 int check_num(int num)
 {
-	if (num<60) printf("²»¼°¸ñ");
-	if (num>60 && num<85) printf("Ò»°ã");
-	if (num>85 && num <95) printf("Á¼ºÃ");
-	if (num>95 && num<=100) printf("ÓÅĞã");
+	if (num<60) printf("ä¸åŠæ ¼");
+	if (num>60 && num<85) printf("ä¸€èˆ¬");
+	if (num>85 && num <95) printf("è‰¯å¥½");
+	if (num>95 && num<=100) printf("ä¼˜ç§€");
 }
 */
 
@@ -170,11 +170,11 @@ int main()
 	int aa, bb;
 	aa=bb=0;
 	
-	printf("ÇëÊäÈëÁ½¸öÊı×Ö£º");
+	printf("è¯·è¾“å…¥ä¸¤ä¸ªæ•°å­—ï¼š");
 	scanf("%d %d", &aa, &bb);
 	
-	printf("%dºÍ%dÖĞµÄ×î´óÖµÊÇ£º%d\n", aa, bb, maxx(aa, bb));
-	printf("%dºÍ%dÖĞµÄ×îĞ¡ÖµÊÇ£º%d", aa, bb, minn(aa, bb));
+	printf("%då’Œ%dä¸­çš„æœ€å¤§å€¼æ˜¯ï¼š%d\n", aa, bb, maxx(aa, bb));
+	printf("%då’Œ%dä¸­çš„æœ€å°å€¼æ˜¯ï¼š%d", aa, bb, minn(aa, bb));
 }
 */
 
@@ -187,23 +187,23 @@ void func1();
 
 int main()
 {
-	printf("Î»ÖÃÒ» pi=%lf\n", pi);
+	printf("ä½ç½®ä¸€ pi=%lf\n", pi);
 	func1();
-	printf("Î»ÖÃ¶ş pi=%lf\n", pi);
+	printf("ä½ç½®äºŒ pi=%lf\n", pi);
 }
 
-// printf("Î»ÖÃÎå pi=%lf\n", pi);
+// printf("ä½ç½®äº” pi=%lf\n", pi);
 
 void func1()
 {
-	printf("Î»ÖÃÈı pi=%lf\n", pi);
+	printf("ä½ç½®ä¸‰ pi=%lf\n", pi);
 	double pi=3.5;
-	printf("Î»ÖÃËÄ pi=%lf\n", pi);
+	printf("ä½ç½®å›› pi=%lf\n", pi);
 }
 */
 
 
-
+/*
 #include <stdio.h>
 #include <stdlib.h>
  
@@ -214,7 +214,7 @@ int main()
 	// int a10=25;
 	// int a16=0x25ac;
 	
-	// printf("¶ş½øÖÆ£º%d\n°Ë½øÖÆ£º%d\nÊ®½øÖÆ£º%d\nÊ®Áù½øÖÆ£º%d\n", a2, a8, a10, a16);
+	// printf("äºŒè¿›åˆ¶ï¼š%d\nå…«è¿›åˆ¶ï¼š%d\nåè¿›åˆ¶ï¼š%d\nåå…­è¿›åˆ¶ï¼š%d\n", a2, a8, a10, a16);
 	
 	// int i=32767;
 	// printf("i %hd, %d, %ld\n", i, i, i);
@@ -234,4 +234,35 @@ int main()
 	jj=labs(jj);
 	printf("ii=%d\n", ii);
 	printf("ii=%ld\n", jj);
+}
+*/
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include "_public.h"
+
+int main()
+{
+	int sex=0;
+	int age=0;
+	double weight=63;
+	int height=0;
+	int waistline=85;
+	double bfr=0;
+	
+	
+	// bfr=(((waistline*0.74)-(weight*0.082+44.74))/weight)*100;
+	
+	// printf("bfr=%lf", bfr);
+	
+	// printf("å¼€å§‹æµ‹è¯•BodyFatRatio_simpleå‡½æ•°\n");
+	// BodyFatRatio_simple(sex, age, weight, height);
+	// printf("\nBodyFatRatio_simpleå‡½æ•°æµ‹è¯•å®Œæˆï¼");
+	
+	printf("\n\n\n\nå¼€å§‹æµ‹è¯•BodyFatRatio_adultå‡½æ•°\n");
+	BodyFatRatio_adult(sex, age, waistline, weight);
+	printf("\nBodyFatRatio_adultå‡½æ•°æµ‹è¯•å®Œæˆï¼");
+	
 }
