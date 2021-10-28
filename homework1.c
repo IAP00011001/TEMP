@@ -1,3 +1,26 @@
+// 定义
+/*
+int aa, bb;
+double cc, dd;
+char ee, ff;
+char gg[11];
+
+//初始化
+int aa=bb=0;
+double cc=dd=0;
+char ee=ff=0;
+memset(gg,0,sizeof(gg));
+
+//变量赋值
+int aa=i;
+double cc=j;
+char ee=k;
+strcpy(gg,l);
+*/
+
+
+
+
 // %d 整形
 // %f/%lf 浮点数/双精度
 // %c/%s 字符/字符串
@@ -5,6 +28,7 @@
 
 // *p == i  p == &i *p存放的是一个值，p存放的是该值的内存地址
 
+// **********整型**********
 // signed int aa 正数/负数 整型aa
 // unsigned int aa 整型aa
 // short int aa 4字节 短整型aa
@@ -23,6 +47,476 @@
 // 十进制：
 // 有符号输出：%hd %d %ld  short int long
 // 无符号输出：%hu %u %lu  short int long
+
+// 1字节=8位，表示的取值范围=2^8-1
+// 4字节=取值范围=2^8x2^8x2^8x2^8-1
+// 8字节=取值范围=2^8x2^8x2^8x2^8x2^8x2^8x2^8x2^8-1
+// singed(有符号)的范围减半，从负到正
+// unsigned(无符号)的，从0到正
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	int num=1;
+	
+	while (num <= 10)
+	{ 
+	    if (num!=5 & num!=6 )
+	    { 
+		    printf("***      ***\n");
+		} 
+	    else
+	    { 
+		    printf("************\n");
+        } 
+	    num += 1;
+	} 
+		
+	return 0;
+}
+*/
+
+
+/*
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	char name[10];
+	memset(name,0,sizeof(name));
+	
+	char sex[3];
+	memset(sex,0,sizeof(sex));
+	int year=0;
+	int height=0;
+	double weight=0;
+	
+	printf("请输入姓名、性别、年龄、身高、体重。\n");
+	scanf("%s %s %d %d %lf", name, &sex, &year, &height, &weight);
+	printf("姓名：%s\n 性别：%s\n 年龄：%d\n 身高：%d\n 体重：%lf\n", name, sex, year, height, weight);
+	
+	return 0;
+}
+*/
+
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	int age=0;
+	int money=2000;
+	int yz=0;
+	
+	printf("请输入你的年龄\n");
+	scanf("%d", &age);
+	
+	if (age >= 16)
+	{
+		printf("你已经%d岁了，有资格参加！", age);
+	}
+	else if (age < 16)
+	{
+		printf("由于你才%d岁，不满16周岁，没有资格参加！\n\n", age);
+		
+		printf("你认为自己的颜值怎么样？（漂亮输入：1;一般输入：0）\n");
+		scanf("%d", &yz);
+		
+		if (yz == 1)
+			printf("你觉得自己颜值漂亮，所以你的路费为：%d", money+500);
+		else 
+		    printf("你觉得自己颜值一般，所以你的路费为：%d", money);
+	}
+}
+
+*/
+
+/*
+
+#include <stdio.h>
+
+int main()
+{
+	int day_num=0;
+	
+	printf("请输入1-7之间的任意整数\n");
+	scanf("%d", &day_num);
+	
+	switch (day_num)
+	{
+		case 1: printf("%d数字代表：星期一\n", day_num); break;
+		case 2: printf("%d数字代表：星期二\n", day_num); break;
+		case 3: printf("%d数字代表：星期三\n", day_num); break;
+		case 4: printf("%d数字代表：星期四\n", day_num); break;
+		case 5: printf("%d数字代表：星期五\n", day_num); break;
+		case 6: printf("%d数字代表：星期六\n", day_num); break;
+		case 7: printf("%d数字代表：星期日\n", day_num); break;
+		default: printf("输入错误！\n"); break;
+	}
+	
+	// if (day_num == 1)
+		// printf("%d数字代表：星期一\n", day_num);
+	// else if (day_num == 2)
+		// printf("%d数字代表：星期二\n", day_num);
+	// else if (day_num == 3)
+		// printf("%d数字代表：星期三\n", day_num);
+	// else if (day_num == 4)
+		// printf("%d数字代表：星期四\n", day_num);
+	// else if (day_num == 5)
+		// printf("%d数字代表：星期五\n", day_num);
+	// else if (day_num == 6)
+		// printf("%d数字代表：星期六\n", day_num);
+	// else if (day_num == 7)
+		// printf("%d数字代表：星期日\n", day_num);
+	// else 
+		// printf("输入错误！\n");
+}
+*/
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	int month_num=0;
+	
+	printf("请输入1-12之间任意整数\n");
+	scanf("%d", &month_num);
+	
+	switch(month_num)
+	{
+		case 1: printf("数字%d代表一月，英文为：January ，简写成：Jan\n", month_num); break;
+		case 2: printf("数字%d代表二月，英文为：February，简写成：Feb\n", month_num); break;
+		case 3: printf("数字%d代表三月，英文为：March，简写成：Mar\n", month_num); break;
+		case 4: printf("数字%d代表四月，英文为：April，简写成：Apr\n", month_num); break;
+		case 5: printf("数字%d代表五月，英文为：May，简写成：May\n", month_num); break;
+		case 6: printf("数字%d代表六月，英文为：June，简写成：Jun\n", month_num); break;
+		case 7: printf("数字%d代表七月，英文为：July，简写成：Jul\n", month_num); break;
+		case 8: printf("数字%d代表八月，英文为：August，简写成：Aug\n", month_num); break;
+		case 9: printf("数字%d代表九月，英文为：September，简写成：Sept\n", month_num); break;
+		case 10: printf("数字%d代表十月，英文为：October，简写成：Oct\n", month_num); break;
+		case 11: printf("数字%d代表十一月，英文为：November，简写成：Nov\n", month_num); break;
+		case 12: printf("数字%d代表十二月，英文为：December，简写成：Dec\n", month_num); break;
+		default: printf("数字%d不代表任何月份！", month_num);break;
+	}
+}
+
+*/
+
+
+
+/*
+
+#include <stdio.h>
+
+int main()
+{
+	int a, b;
+	
+	printf("请输入两个整数数字：\n");
+	scanf("%d %d", &a, &b);
+	
+	if (a == b)
+	{
+		printf("a(%d)等于b(%d)", a, b);
+	}
+	else
+	{
+		if (a > b) printf("a(%d)大于b(%d)", a, b);
+		else printf("a(%d)小于b(%d)", a, b);
+	}
+}
+*/
+
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	int age=0;
+	int height=0;
+	int size=0;
+	int yz=0;
+	
+	printf("这位选手，请描述以下自己的年龄、身高、身材、颜值！\n");
+	printf("身材：1-火辣；2-普通；3-飞机场\n颜值：1-漂亮；2-一般；3-歪瓜裂枣\n");
+	scanf("%d %d %d %d", &age, &height, &size, &yz);
+	
+	if (((age >= 18) && (age <= 25)) &&
+	    ((height >= 165) && (height <= 178)) &&
+        (size == 1) &&
+	    (yz == 1))
+	{
+	    printf("你就是我们的“妃子”了\n");
+	}
+	else if (((age >= 18) && (age <= 30)) &&
+	         ((height >= 160) && (height <= 165)) &&
+			 ((size == 1) || (size == 2)) &&
+			 (yz == 2))
+	{
+		printf("你就我们的“宫女”了\n");
+	}
+	else if (((age >=35) && (age <= 40)) &&
+	         ((height >= 155) && (height <= 165)) &&
+			 ((size == 2) || (size == 3)) &&
+			 (yz == 2))
+	{
+		printf("你就是我们的“嬷嬷”了\n");
+	}
+	else
+	{
+		printf("哦NO~ 你不是我们要找的人，麻溜的走吧！");
+	}
+}
+*/
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	int times=0;
+	int numbers=0;
+	int sum=0;
+	
+	while (sum < 5000)
+	{
+		printf("请输入数字：");
+	    scanf("%d", &numbers);
+		
+		// times += 1;
+		times ++;
+		sum += numbers;
+	}
+	
+	printf("你一共输入了%d次数据，总和为：%d", times, sum);
+				
+}
+*/
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	int i=0;
+	int a=0;
+	int sum=0;
+	
+	printf("请输入任意一个整数：\n");
+	scanf("%d", &a);
+		
+	for (i=a; i<=100; i++)
+	{
+		sum += i;
+	}
+	
+	printf("%d到100的累加值为：%d", a, sum);
+}
+*/
+
+
+//作业 1)：累加1-100的值
+/*
+#include <stdio.h>
+
+int main()
+{
+	int num=0;
+	int sum=0;
+	
+	while (num<100)
+	{
+		num++;
+		sum += num;
+	}
+	
+	printf("num=%d,累加总值为：%d", num, sum);
+}
+*/
+
+//作业 2)：累加输入数字和
+/*
+#include <stdio.h>
+
+int main()
+{
+	int num=0;
+	int sum=0;
+	int counts=0;
+	
+	for (sum=0; sum<5000; sum += num)
+	{
+		printf("请输入数字：");
+	    scanf("%d", &num);
+	
+		counts++;
+	}
+	
+	printf("你输入了%d次，累加值为：%d", counts, sum);
+}
+*/
+
+
+//作业 3):99乘法表
+/*
+#include <stdio.h>
+
+int main()
+{
+	int i=0;
+	int j=0;
+	
+	for (i=1; i<10; i++)
+	{
+		for (j=1; j<=i; j++)
+		{
+			printf("%dX%d=%d\t", j, i, i*j);
+		}
+		
+		printf("\n");
+	}
+}
+*/
+
+
+// 作业4)
+/*
+#include <stdio.h>
+
+int main()
+{
+	int counts1=0;
+	int counts2=0;
+	int num;
+	int sum=0;
+	
+	while (num != 0)
+	{
+		printf("请输入数字：");
+		scanf("%d", &num);
+		
+		if ((num > 0) && (num <= 100))
+		{
+			sum += num;
+			counts2++;
+		}
+		
+		counts1++;
+	}
+	
+	printf("你一共输入了%d次，有效输入了%d次，有效数据总和为：%d", counts1, counts2, sum);
+}
+*/
+
+
+// 作业 5)
+/*
+#include <stdio.h>
+
+int main()
+{
+	int num=1;
+	int i;
+	
+	for (i=0; i<=100; i++)
+	{
+		if (i%2 == 0)
+		{
+			printf("第%d个偶数是：%d\n", num, i);
+			num += 1;
+		}
+	}
+}
+*/
+
+
+// 作业 6)
+/*
+#include <stdio.h>
+
+int main()
+{
+	int num=1;
+	int i;
+	
+	for (i=1; i<=100; i++)
+	{
+		if (i%5 == 0)
+		{
+			printf("第%d个数是：%d\n", num, i);
+			num += 1;
+		}
+	}
+}
+*/
+
+
+// 作业 7)
+/*
+#include <stdio.h>
+
+int main()
+{
+	int age=0;
+	int height=0;
+	int size=0;
+	int yz=0;
+	
+	int num_fz=0;
+	int num_gn=0;
+	int num_mm=0;
+	int num_qt=0;
+	int num;
+	
+	for (num=0; num<5; num++)
+	{
+		printf("这位选手，请描述以下自己的年龄、身高、身材、颜值！\n");
+	    printf("身材：1-火辣；2-普通；3-飞机场\n颜值：1-漂亮；2-一般；3-歪瓜裂枣\n");
+	    scanf("%d %d %d %d", &age, &height, &size, &yz);
+	
+	    if (((age >= 18) && (age <= 25)) &&
+	        ((height >= 165) && (height <= 178)) &&
+            (size == 1) &&
+	        (yz == 1))
+	    {
+			num_fz++;
+	    }
+	    else if (((age >= 18) && (age <= 30)) &&
+	             ((height >= 160) && (height <= 165)) &&
+		    	 ((size == 1) || (size == 2)) &&
+		    	 (yz == 2))
+	    {
+			num_gn++;
+	    }
+	    else if (((age >=35) && (age <= 40)) &&
+	             ((height >= 155) && (height <= 165)) &&
+		    	 ((size == 2) || (size == 3)) &&
+			     (yz == 2))
+	    {
+			num_mm++;
+	    }
+		else num_qt++;
+	}
+	
+	printf("妃子有%d人，宫女有%d人，嬷嬷有%d人，闲杂人等有%d人", num_fz, num_gn, num_mm, num_qt);
+	
+}
+
+*/
+
+
+
 
 
 // 【数组】作业 4）
@@ -238,7 +732,7 @@ int main()
 */
 
 
-
+/*
 #include <stdio.h>
 #include <string.h>
 #include "_public.h"
@@ -265,4 +759,44 @@ int main()
 	BodyFatRatio_adult(sex, age, waistline, weight);
 	printf("\nBodyFatRatio_adult函数测试完成！");
 	
+}
+*/
+
+
+// ********************整型********************
+// 作业 1)
+/*
+#include <stdio.h>
+
+int main()
+{
+	short s1;
+	unsigned short s2;
+	int i1;
+	unsigned int i2;
+	long l1;
+	unsigned long l2;
+	
+	printf("sizeof(s1)=%hd  ", sizeof(s1));
+	printf("sizeof(s2)=%hu\n", sizeof(s2));
+	printf("sizeof(i1)=%d  ", sizeof(i1));
+	printf("sizeof(i2)=%u\n", sizeof(i2));
+	printf("sizeof(l1)=%ld  ", sizeof(l1));
+	printf("sizeof(l2)=%lu\n", sizeof(l2));
+}
+*/
+
+
+// 作业 2)
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	char num[101];
+	
+	printf("请输入一个数字字符串：");
+	scanf("%s", num);
+	printf("你输入的字符串是%s，加100后的值=%d", num, atoi(num)+100);
 }
