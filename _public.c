@@ -171,3 +171,140 @@ double BodyFatRatio_adult(int sex, int age, int waistline, double weight)
 		break;
 	}
 }
+
+
+//2021.10.29 求int整数的绝对值
+int i_abs(const int j)
+{
+	int j_return=0;
+	
+	if (j == 0) j_return=0;
+	else if (j > 0) j_return=j;
+	else if (j < 0) j_return=0-j;
+	
+	return j_return;
+}
+
+
+// 求long整数的绝对值
+long i_labs(const long int j)
+{
+	int j_return=0;
+	
+	if (j == 0) j_return=0;
+	else if (j > 0) j_return=j;
+	else if (j < 0) j_return=0-j;
+	
+	return j_return;
+}
+
+
+// 把数字0-9的字符转换为int整型
+int i_ctoi(const char chr)
+{
+	switch(chr)
+	{
+		case '0': return 0; break;
+		case '1': return 1; break;
+		case '2': return 2; break;
+		case '3': return 3; break;
+		case '4': return 4; break;
+		case '5': return 5; break;
+		case '6': return 6; break;
+		case '7': return 7; break;
+		case '8': return 8; break;
+		case '9': return 9; break;
+	}
+	
+	// 若chr不是数字的字符，函数返回-1
+	return 0;
+}
+
+
+// 求整数x的y次幂， 函数返回值为整数x的y次幂
+long i_pow(const long x, const long y)
+{
+	long count;
+	long sum=1;
+		
+	for (count=1; count<=y; count++) {sum *= x;}
+	
+	return sum;
+}
+
+
+// 统计100以内字符串长度，函数返回值为长度数字
+int i_strlen(const char chr[101])
+{
+	int count=0;
+	
+	while (chr[count] != '\0')
+	{
+		count += 1;
+	}
+	
+	return count;
+}
+
+
+// 计算字符串里所有数字之和
+long i_sumstr(const char str[101])
+{
+	int count=0;    // 计数器
+	int corner=0;    // 数组角标
+	int sum=0;    // 数字总和
+	
+	// 获取数组长度count
+	while (str[count] != '\0') {count += 1;}
+		
+	for (corner=0; corner<count; corner++)
+	{
+		char chr = str[corner];    // 获取单个字符
+		
+		switch (chr)
+		{
+			case '0': sum += 0; break;
+			case '1': sum += 1; break;
+			case '2': sum += 2; break;
+			case '3': sum += 3; break;
+			case '4': sum += 4; break;
+			case '5': sum += 5; break;
+			case '6': sum += 6; break;
+			case '7': sum += 7; break;
+			case '8': sum += 8; break;
+			case '9': sum += 9; break;
+			default: sum += 0;
+		}
+	}
+	
+	return sum;    // 返回数字总和
+}
+
+
+// 把100以内长度字符串nptr转换为int整数
+// int i_atoi(const char nptr[101])
+// {
+	// int ii=0;
+	// int jj=0;
+	// int count=i_strlen(nptr);
+	
+	// int sum=0;
+	
+	// for (jj=0; jj<count; jj++)
+	// {
+		// char cc=nptr[ii];
+		// int kk=count;
+		
+	    // sum += i_ctoi(cc)*(i_pow(10, kk));
+		// ii += 1;
+		// kk -= 1;
+	// }
+	
+	// return sum;
+// }
+
+
+// 把字符串nptr转换为long整数
+// int i_atol(const char nptr)
+// {}
+

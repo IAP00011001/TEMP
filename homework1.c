@@ -28,12 +28,11 @@ strcpy(gg,l);
 
 // *p == i  p == &i *p存放的是一个值，p存放的是该值的内存地址
 
-// **********整型**********
+// 【**********整型**********】
 // signed int aa 正数/负数 整型aa
 // unsigned int aa 整型aa
 // short int aa 4字节 短整型aa
 // long int aa 长整型aa
-
 
 
 // 二进制0~1：0 1
@@ -48,11 +47,19 @@ strcpy(gg,l);
 // 有符号输出：%hd %d %ld  short int long
 // 无符号输出：%hu %u %lu  short int long
 
+
 // 1字节=8位，表示的取值范围=2^8-1
 // 4字节=取值范围=2^8x2^8x2^8x2^8-1
 // 8字节=取值范围=2^8x2^8x2^8x2^8x2^8x2^8x2^8x2^8-1
 // singed(有符号)的范围减半，从负到正
 // unsigned(无符号)的，从0到正
+
+
+// 字符串转为数字的函数（仅限整数）：int atoi(const char *nptr);
+//                                   long atol(const char *nptr);
+// 求整数的绝对值： int abs(const int j);
+//                  long labs(const long int j);
+									 
 
 /*
 #include <stdio.h>
@@ -787,16 +794,198 @@ int main()
 */
 
 
-// 作业 2)
-
+// 作业 4)
+/*
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
 	char num[101];
-	
+		
 	printf("请输入一个数字字符串：");
 	scanf("%s", num);
+	
 	printf("你输入的字符串是%s，加100后的值=%d", num, atoi(num)+100);
 }
+*/
+
+
+// 作业 5)
+/*
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	long long int ii;
+	
+	double area=0;
+	double aa=0;
+	
+	area=pow((pow(2,8)),sizeof(ii));
+	aa=pow(256,8);
+		
+	printf("long long int ii的sizeof(ii)=%d，ii的取值范围=%lf", sizeof(ii), aa);
+}
+*/
+
+
+// 作业 6) ???
+/*
+#include <stdio.h>
+
+int main()
+{
+	short s1=33000;
+	unsigned short s2=66000;
+	int i1=2247483647;
+	unsigned int i2=4394967295;
+	long l1=9323372036854775807;
+	unsigned long l2=19446744073709551615;
+	
+	printf("s1=%hd  s2=%hu\ni1=%d  i2=%u\nl1=%ld  l2=lu", s1, s2, i1, i2, l1, l2);
+}
+*/
+
+
+// 作业 7)
+/*
+#include <stdio.h>
+#include "_public.h"
+
+int main()
+{
+	int jj=0;
+		
+	printf("请输入一个整数：");
+	scanf("%d", &jj);
+	printf("你输入的值jj=%d，ABS(jj)=%d，LABS(jj)=%ld", jj, i_abs(jj), i_labs(jj));
+}
+*/
+
+
+// 作业 8)
+/*
+#include <stdio.h>
+#include <string.h>
+#include "_public.h"
+
+int main()
+{
+	char aa=0;
+	
+	printf("请输入一个数字字符：");
+	scanf("%c", &aa);
+	
+	printf("你输入的字符是'%c'，i_ctoi('%c')=%d", aa, aa, i_ctoi(aa));
+	
+}
+*/
+
+
+// 作业 9)
+/*
+#include <stdio.h>
+#include <math.h>
+#include "_public.h"
+
+int main()
+{
+	long x=0;
+	long y=0;
+	
+	printf("请输入x、y：");
+	scanf("%ld %ld", &x, &y);
+	printf("i_pow(%ld, %ld)=%ld    |i_labs(%ld, %ld)|=%ld", x, y, i_pow(x, y), x, y, i_labs(_pow(x, y)));
+}
+*/
+
+
+// 作业 10)???
+/*
+#include <stdio.h>
+#include <string.h>
+#include "_public.h"
+
+int main()
+{
+	char cc[51];
+	memset(cc,0,sizeof(cc));
+	int count=0;
+	
+	int ii=0;
+	int sum=0;
+	
+	printf("请输入字符串：");
+	scanf("%s", cc);
+	
+	count = i_strlen(cc);
+	
+	for (ii=0; ii<count; ii++)
+	{
+		char cc2=cc[ii];
+		sum += i_ctoi(cc2);
+	}
+	
+	printf("你输入的字符串是：%s，总和=%d", cc, sum);
+}
+*/
+
+
+// 作业 11) ******bug:超过10个数字就出错*****
+/*
+#include <stdio.h>
+#include <string.h>
+#include "_public.h"
+
+int main()
+{
+	char chr[101];
+	memset(chr,0,sizeof(chr));
+	long ii, jj;
+	long sum=0;
+	
+	// strcpy(chr, "123");
+	printf("请输入一个数字字符串：");
+	scanf("%s", chr);
+	ii = i_strlen(chr);
+	
+	for (jj=0; jj<ii; jj++)
+	{
+		long chr_single=0;
+		chr_single = i_ctoi(chr[jj]);
+		
+		sum += chr_single*(i_pow(10, ii-(jj+1)));
+		
+		printf("%d*i_pow(10, %d-(%d+1)) sum=%d\n", chr_single, ii, jj, sum);
+	}
+	
+	printf("%d", sum);
+	
+}
+*/
+
+
+// 作业 12) ???
+/*
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ 
+ int main()
+ {
+	 int chr[61];
+	 memset(chr,0,sizeof(chr));
+	 int ii;
+	 
+	 for (ii=0; ii<53; ii++)
+	 {
+		 chr[ii] = rand()%52+1;
+		 printf("%d\n", chr[ii]);
+	 }
+	 // printf("%d", chr);
+ }
+ */
+ 
+ 
