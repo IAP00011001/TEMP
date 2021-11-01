@@ -972,20 +972,143 @@ int main()
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
+ #include <time.h>
  
  int main()
  {
 	 int chr[61];
 	 memset(chr,0,sizeof(chr));
 	 int ii;
+	 int jj;
+	 int count=0;
 	 
-	 for (ii=0; ii<53; ii++)
+	 srand(time(0));
+	 
+	 while (count < 53)
 	 {
-		 chr[ii] = rand()%52+1;
-		 printf("%d\n", chr[ii]);
+		 jj = rand()%52 + 1;    // 随机生成一个数;
+		 
+		 for (ii=0; ii<53; ii++)
+		 {
+			 if (jj != chr[ii])
+			 {
+				 chr[ii] = jj;
+				 printf("%d ", chr[ii]);
+				 count += 1;
+			 }
+			 else if (jj == chr[ii])
+			 {
+				 printf("重复");
+			 }
+		 }
+		 
 	 }
-	 // printf("%d", chr);
+	 
  }
  */
  
  
+//********************【字符】********************
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+ 
+int iisalpha(const int chr);    // A-Z a-z 满足返回非0值，否则返回0
+int iisalnum(const int chr);    // A-Z a-z 0-9 满足返回非0值，否则返回0
+int iisdigit(const int chr);    // 0-9 满足返回非0值，否则返回0
+int iislower(const int chr);    // a-z 满足返回非0值，否则返回0
+int iisupper(const int chr);    // A-Z 满足返回非0值，否则返回0
+int ttolower(const int chr);    // A-Z 返回相应小写 a-z
+int ttoupper(const int chr);    // a-z 返回相应大写 A-Z
+
+int cctoi(const char chr);    // chr为用字符方式表示的数字，函数的返回值为数字的整数
+
+int main()
+{
+	
+    char ch;
+	char c1=300;
+	unsigned char c2=256;
+ 
+    printf("请输入：");
+    scanf("%c", &ch);
+	 
+	
+	printf("isalpha(ch)=%d  iisalpha(ch)=%d\n", isalpha(ch), iisalpha(ch));
+	printf("isalnum(ch)=%d  iisalnum(ch)=%d\n", isalnum(ch), iisalnum(ch));
+	printf("isdigit(ch)=%d  iisdigit(ch)=%d\n", isdigit(ch), iisdigit(ch));
+	printf("islower(ch)=%d  iislower(ch)=%d\n", islower(ch), iislower(ch));
+	printf("isupper(ch)=%d  iisupper(ch)=%d\n", isupper(ch), iisupper(ch));
+	printf("tolower(ch)=%c  ttolower(ch)=%c\n", tolower(ch), ttolower(ch));
+	printf("toupper(ch)=%c  ttoupper(ch)=%c\n\n", toupper(ch), ttoupper(ch));
+	
+	printf("cctoi(ch)=%d\n\n", cctoi(ch));
+	
+	printf("=%%s=\n\n");
+	
+	
+    printf("%d %d\n", c1, c2);
+	
+	
+	
+	// char cc1='2';
+	// char cc2='3';
+	
+	// printf("2+3=%d\n", '2'+'3');
+	// printf("2+3=%c", '2'+'3');
+	
+	 
+}
+ 
+
+
+int iisalpha(const int chr)
+{
+	if ((chr>=65 && chr<=90) || (chr>=97 && chr<=122)) return 1;
+	else return 0;
+}
+
+int iisalnum(const int chr)
+{
+	if ((chr>=48 && chr<=57) || 
+	    (chr>=65 && chr<=90) || 
+		(chr>=97 && chr<=122)) return 1;
+	else return 0;
+}
+
+int iisdigit(const int chr)
+{
+	if (chr>=48 && chr<=57) return 1;
+	else return 0;
+}
+
+int iislower(const int chr)
+{
+	if (chr >='a' && chr <='z') return 1;
+	else return 0;
+}
+
+int iisupper(const int chr)
+{
+	if (chr >='A' && chr <='Z') return 1;
+	else return 0;
+}
+
+int ttolower(const int chr)
+{
+	if (chr >= 65 && chr <= 90) return chr+32;
+}
+
+
+int ttoupper(const int chr)
+{
+	if (chr >= 97 && chr <= 122) return chr-32;
+}
+
+int cctoi(const char chr)
+{
+	// printf("%d", chr-48);
+	if (chr>='0' && chr<='9') return chr-48;
+	return -1;
+}
