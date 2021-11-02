@@ -61,6 +61,20 @@ strcpy(gg,l);
 //                  long labs(const long int j);
 									 
 
+
+
+// 【**********字符串**********】
+// float %f 4位
+// double %lf 8位
+// long double %Lf 16位
+
+// float只能表达6-7位有效数字
+// double/long double 能表达15-16位有效果数字，但后者的内存占用是前者的两倍
+// 实际开发中，建议只是用double
+
+// %m.nlf = %数值总长度.小数位数lf
+
+
 /*
 #include <stdio.h>
 
@@ -1007,7 +1021,7 @@ int main()
  }
  */
  
- 
+ /*
 //********************【字符】********************
 #include <stdio.h>
 #include <stdlib.h>
@@ -1111,4 +1125,85 @@ int cctoi(const char chr)
 	// printf("%d", chr-48);
 	if (chr>='0' && chr<='9') return chr-48;
 	return -1;
+}
+*/
+
+
+
+// ********************【字符串】*********************
+/*
+#include <stdio.h>
+
+int main()
+{
+	float aa;
+	double bb;
+	long double cc;
+	
+	printf("sizeof(float)=%d\n", sizeof(aa));    // 4
+	printf("sizeof(double)=%d\n", sizeof(bb));    // 8
+	printf("sizeof(long double)=%d\n", sizeof(cc));    // 12 ???
+}
+*/
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	double ff2=9.9;
+	printf("ff2=%lf\n", ff2);
+	if (ff2 == 9.9) printf("ff2=9.9\n");
+	
+	double ff5=99.999;
+	printf("ff5=%lf\n", ff5);
+	if (ff5 == 99.999) printf("ff5=99.999\n");
+	
+	double ff6=999.999;
+	printf("ff6=%lf\n", ff6);
+	if (ff6 == 999.999) printf("ff6=999.999\n");
+	
+	double ff7=9999.999;
+	printf("ff7=%lf\n", ff7);
+	if (ff7 == 9999.999) printf("ff7=9999.999\n");
+	
+	double ff8=99999.999;
+	printf("ff8=%lf\n", ff8);
+	if (ff8 == 99999.999) printf("ff8=99999.999\n");
+}
+*/
+
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	double ff=70001.538;
+	
+	printf("ff=%lf\n", ff);
+	printf("ff=%.4lf\n", ff);
+	printf("ff=%11.4lf\n", ff);
+	printf("ff=%3.2lf\n", ff);
+}
+*/
+
+
+#include <stdio.h>
+
+int main()
+{
+	int ii=4;
+	int jj=5;
+	double dd;
+	
+	dd=ii;
+	printf("dd=%.4lf\n", dd);
+	
+	dd=ii/jj;
+	printf("dd=%.4lf\n", dd);
+	
+	dd=(double)ii/jj;
+	printf("dd=%.4lf", dd);
 }
