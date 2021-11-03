@@ -63,7 +63,7 @@ strcpy(gg,l);
 
 
 
-// 【**********字符串**********】
+// 【**********浮点数**********】
 // float %f 4位
 // double %lf 8位
 // long double %Lf 16位
@@ -73,6 +73,8 @@ strcpy(gg,l);
 // 实际开发中，建议只是用double
 
 // %m.nlf = %数值总长度.小数位数lf
+
+// 科学计数法输出：%e/%E（%m.ne/%m.nE）
 
 
 /*
@@ -1130,7 +1132,7 @@ int cctoi(const char chr)
 
 
 
-// ********************【字符串】*********************
+// ********************【浮点数】*********************
 /*
 #include <stdio.h>
 
@@ -1189,7 +1191,7 @@ int main()
 }
 */
 
-
+/*
 #include <stdio.h>
 
 int main()
@@ -1207,3 +1209,77 @@ int main()
 	dd=(double)ii/jj;
 	printf("dd=%.4lf", dd);
 }
+*/
+
+/*
+#include <stdio.h>
+
+int main()
+{
+	double dd;
+	
+	dd=123000000;
+	printf("dd=%e\n", dd);
+	
+	dd=-123000000;
+	printf("dd=%.2e\n", dd);
+	
+	dd=0.0000000123;
+	printf("dd=%e\n", dd);
+	
+	dd=-0.0000000123;
+	printf("dd=%.2e\n", dd);
+	
+	dd=0.0000000123;
+	printf("dd=%3.2e\n", dd);
+}
+*/
+
+
+// 作业 2、5)
+
+#include <stdio.h>
+// #include <math.h>
+// #include <stdlib.h>
+
+double FABS(const double x);    // 求双精度实数x的绝对值
+double ROUND(const double x);    // double四舍五入
+double CELL(const double x);    // double向上取整数
+double FLOOR(const double x);    // double向下取整数
+double MODF(double val, double *ip);    //把双精度val分解成整数部分和小数部分，整数部分存放在ip所指的变量中，返回小数部分
+
+
+int main()
+{
+	// float ff=12345678901234567890;  //
+	// double dd=12345678901234567890;
+	
+	// printf("sizeof=%d  范围=%f\n", sizeof(ff), ff);
+	// printf("sizeof=%d  范围=%lf\n", sizeof(dd), dd);
+	
+	double d;
+	
+	printf("请输入一个浮点数：");
+	scanf("%lf", &d);
+	
+	printf("FABS(d)=%2.1lf\n", FABS(d));
+	
+	
+}
+
+
+double FABS(const double x)
+{
+	if (x > 0) return x;
+	else if (x < 0) return -x;
+	else if (x == 0) return x;
+}
+
+double ROUND(const double x)
+{
+	double ii;
+}
+
+// double CELL(const double x)
+// double FLOOR(const double x)
+// double MODF(double val, double *ip)
