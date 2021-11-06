@@ -77,6 +77,23 @@ strcpy(gg,l);
 // 科学计数法输出：%e/%E（%m.ne/%m.nE）
 
 
+
+
+
+// 【**********字符串**********】
+// 字符串末尾"\0"就是数字0
+
+// 字符串初始化：memset(chr,0,sizeof(chr));
+// 字符串赋值：strcpy(chr, "asd");
+
+// UTF-8下 中文占3字节
+// GBK下 中文占2字节？？ 我咋验证的还是3字节？？？
+
+//printf("%s+/-10s", chr);  输出10个字符宽度，左对齐/右对齐  （输出的字符宽度包含字符串中的实际值）
+
+
+
+
 /*
 #include <stdio.h>
 
@@ -1237,7 +1254,7 @@ int main()
 
 
 // 作业 2、5)
-
+/*
 #include <stdio.h>
 // #include <math.h>
 // #include <stdlib.h>
@@ -1283,3 +1300,24 @@ double ROUND(const double x)
 // double CELL(const double x)
 // double FLOOR(const double x)
 // double MODF(double val, double *ip)
+*/
+
+
+
+// ********************【字符串】*********************
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	// 数组越界
+	char chr[2][11];
+	memset(chr,0,sizeof(chr));
+	
+	strcpy(chr[0], "abcde12345abcde12345a");
+	strcpy(chr[1], "abcde12345");
+	
+	printf("chr[0]=%s\n", chr[0]);
+	printf("chr[1]=%s\n", chr[1]);
+}
