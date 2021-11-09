@@ -1306,18 +1306,115 @@ double ROUND(const double x)
 
 // ********************【字符串】*********************
 
+// #include <stdio.h>
+// #include <string.h>
+
+// int main()
+// {
+	// // 数组越界
+	// char chr[2][11];
+	// memset(chr,0,sizeof(chr));
+	
+	// strcpy(chr[0], "abcde12345abcde12345a");
+	// strcpy(chr[1], "abcde12345");
+	
+	// printf("chr[0]=%s\n", chr[0]);
+	// printf("chr[1]=%s\n", chr[1]);
+// }
+
+
+// 作业 1)
+
 #include <stdio.h>
 #include <string.h>
 
+size_t strlen1( const char*  str);        
+char *strcpy1(char* dest, const char* src);  
+char *strncpy1(char* dest, const char* src,size_t n);
+char *strcat1(char* dest, const char* src);
+char *strncat1 (char* dest, const char* src,size_t n);
+char *strchr1(const char *s, const int c);
+char *strrchr1(const char *s, const int c);
+
+
 int main()
 {
-	// 数组越界
-	char chr[2][11];
-	memset(chr,0,sizeof(chr));
+	char ss[21];
+	memset(ss,0,sizeof(ss));
 	
-	strcpy(chr[0], "abcde12345abcde12345a");
-	strcpy(chr[1], "abcde12345");
+	// printf("strlen1=%d\n", strlen1(""));
+	// printf("strlen1=%d\n", strlen1("asdfe"));
+
+	// strcpy1(ss, "asd");
+	// printf("strcpy1=%s=\n", ss);
 	
-	printf("chr[0]=%s\n", chr[0]);
-	printf("chr[1]=%s\n", chr[1]);
+	// strncpy1(ss, "asdef", 1);
+	// printf("strncpy1=%s=\n", ss);
+	
+	// strcpy1(ss, "samuel");
+	// printf("%s", strcat1(ss, ".miller"));
 }
+
+
+size_t strlen1( const char*  str)
+{
+	int num=0;
+	
+	for (num=0; str[num]!=0;)
+	{
+		num += 1;
+	}
+	
+	return num;
+}
+
+char *strcpy1(char* dest, const char* src)
+{
+	int ii=strlen1(src);
+	int jj=0;
+	
+	for (jj=0; jj<ii; jj++)
+	{
+		dest[jj]=src[jj];
+	}
+	
+	dest[jj+1]=0;
+	return dest;
+	
+}
+
+char *strncpy1(char* dest, const char* src,size_t n)
+{
+	int ii=0;
+	
+	while (src[ii]!=0 && ii<n)
+	{
+		dest[ii] = src[ii];
+		ii += 1;
+	}
+	
+	dest[ii+1]=0;
+	return dest;
+}
+
+char *strcat1(char* dest, const char* src)
+{
+	int ii=0;
+	int jj=0;
+	
+	while (dest[ii]!=0) ii += 1;
+	
+	while (src[jj]!=0) 
+	{
+		dest[ii]=src[jj];
+		ii += 1;
+		jj += 1;
+	}
+	
+	dest[ii+1]=0;
+	return dest;
+}
+
+// char *strncat1 (char* dest, const char* src,size_t n)
+// char *strchr1(const char *s, const int c)
+// char *strrchr1(const char *s, const int c)
