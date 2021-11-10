@@ -1362,10 +1362,14 @@ int main()
 	// printf("%s", strncat1(ss, ".miller", 5));
 	
 	// strcpy1(ss, "samuel.miller");
-	// strchr1(ss, 'm');
-	// strrchr1(ss, 'm');
+	// strchr1(ss, 'x');
+	// strrchr1(ss, 'x');
 	
-	printf("%d", strcmp1("aba", "abb"));
+	// printf("%d", strcmp1("aba", "abb"));
+	
+	// printf("%d", strncmp1("abd", "abb", 8));
+	
+	strstr1("samuel.miller", ".miller");
 	
 }
 
@@ -1436,7 +1440,7 @@ char *strncat1 (char* dest, const char* src,size_t n)
 	
 	while (dest[ii]!=0) ii += 1;
 	
-	for (jj=0;src[jj]!=0 && jj<n; jj++)
+	for (jj=0; src[jj]!=0 && jj<n; jj++)
 	{
 		dest[ii]=src[jj];
 		ii += 1;
@@ -1446,45 +1450,34 @@ char *strncat1 (char* dest, const char* src,size_t n)
 	return dest;
 }
 
-char *strchr1(const char *s, const int c)    //???????
+char *strchr1(const char *s, const int c)
 {
 	int ii=0;
 	int jj=0;
-	int kk=0;
-	char cc[301];
-	memset(cc,0,sizeof(cc));
 	
 	// 获取*s的字符串长度
 	while (s[ii]!=0) ii += 1;
 	
 	// 判断*s中是否有c
-	for (jj=0; jj<ii; jj++)
+	while (s[jj]!=c && jj<ii)
 	{
-		// 如果有c
-		if (s[jj]==c)
-		{
-			// 输入c及其之后的所有字符串
-			for (jj=jj; jj<ii; jj++)
-			{
-				cc[kk]=s[jj];
-				kk += 1;
-				// printf("%s\n", cc);
-			}
-		}
+		jj += 1;
 	}
-	printf("%s\n", cc);
+	
+	// 若找到c则返回下标jj，若找不到c则返回0
+	if (jj<ii) printf("%d\n", jj);
+	else printf("%d\n", 0);
 }
 
-char *strrchr1(const char *s, const int c)    //???????
+char *strrchr1(const char *s, const int c)
 {
-	int ii, jj, kk;
-	int cc[301];
-	memset(cc,0,sizeof(cc));
+	int ii, jj;
+	int kk=0;
 	
 	// 获取s的字符串长度
 	while (s[ii]!=0) ii += 1;
 	
-	// 获取最有一个c的下标
+	// 获取最后一个c的下，若没有则返回0
 	for (jj=0; jj<ii; jj++)
 	{
 		if (s[jj]==c)
@@ -1493,17 +1486,66 @@ char *strrchr1(const char *s, const int c)    //???????
 		}
 	}
 	
-	jj=0;
-	
-	for (jj=0; kk<ii; kk++, jj++)
-	{
-		cc[jj]=s[kk];
-		// jj += 1;
-		printf("%d  %d  %s  %c\n", jj, kk, cc, s[kk]);
-	}
-	
-	// printf("%s\n", cc);
+	printf("%d\n", kk);
 }
+
+// char *strchr1(const char *s, const int c)
+// {
+	// int ii=0;
+	// int jj=0;
+	// int kk=0;
+	// char cc[301];
+	// memset(cc,0,sizeof(cc));
+	
+	// // 获取*s的字符串长度
+	// while (s[ii]!=0) ii += 1;
+	
+	// // 判断*s中是否有c
+	// for (jj=0; jj<ii; jj++)
+	// {
+		// // 如果有c
+		// if (s[jj]==c)
+		// {
+			// // 输入c及其之后的所有字符串
+			// for (jj=jj; jj<ii; jj++)
+			// {
+				// cc[kk]=s[jj];
+				// kk += 1;
+			// }
+		// }
+	// }
+	// printf("%s\n", cc);
+// }
+
+// char *strrchr1(const char *s, const int c)
+// {
+	// int ii, jj, kk;
+	// char cc[301];
+	// memset(cc,0,sizeof(cc));
+	
+	// // 获取s的字符串长度
+	// while (s[ii]!=0) ii += 1;
+	
+	// // 获取最后一个c的下标
+	// for (jj=0; jj<ii; jj++)
+	// {
+		// if (s[jj]==c)
+		// {
+			// kk = jj;
+		// }
+	// }
+	
+	// jj=0;
+	
+	// for (jj=0; kk<ii; kk++, jj++)
+	// {
+		// cc[jj]=s[kk];
+		// // printf("%d  %d  %s  %c\n", jj, kk, cc, s[kk]);
+	// }
+	
+	// // return cc;
+	// printf("%s\n", cc);
+// }
 
 
 int strcmp1( const char *str1, const char *str2 )
@@ -1528,7 +1570,7 @@ int strcmp1( const char *str1, const char *str2 )
 			ii1=str1[ii];
 			ii2=str2[ii];
 			
-		if (ii1 > ii2) {num=1; break;}
+		    if (ii1 > ii2) {num=1; break;}
 			else if (ii1 < ii2) {num=-1; break;}
 			else if (ii1 == ii2) {continue;}
 		}
@@ -1546,7 +1588,7 @@ int strcmp1( const char *str1, const char *str2 )
 			ii1=str1[ii];
 			ii2=str2[ii];
 			
-		if (ii1 > ii2) {num=1; break;}
+		    if (ii1 > ii2) {num=1; break;}
 			else if (ii1 < ii2) {num=-1; break;}
 			else if (ii1 == ii2) {continue;}
 		}
@@ -1555,5 +1597,70 @@ int strcmp1( const char *str1, const char *str2 )
 	return num;
 }
 
-// int strncmp1(const char *str1, const char *str2, const size_t n)
-// char *strstr1(const char* str, const char* substr)
+int strncmp1(const char *str1, const char *str2, const size_t n)
+{
+	int ss1=0;
+	int ss2=0;
+	int num;
+	
+	// 获取str1 str2的字符串长度
+	while (str1[ss1]!=0) ss1 += 1;
+	while (str2[ss2]!=0) ss2 += 1;
+	
+	if (ss1 <= ss2)
+	{
+		int ii=0;
+		int ii1=0;
+		int ii2=0;
+		
+		// 下标从0开始判断，str1 str2的ASCII码的大小
+		for (ii=0; ii<n; ii++)
+		{
+			ii1=str1[ii];
+			ii2=str2[ii];
+			
+		    if (ii1 > ii2) {num=1; break;}
+			else if (ii1 < ii2) {num=-1; break;}
+			else if (ii1 == ii2) {continue;}
+		}
+	}
+	
+	if (ss1 > ss2)
+	{
+		int ii=0;
+		int ii1=0;
+		int ii2=0;
+		
+		// 下标从0开始判断，str1 str2的ASCII码的大小
+		for (ii=0; ii<n; ii++)
+		{
+			ii1=str1[ii];
+			ii2=str2[ii];
+			
+		    if (ii1 > ii2) {num=1; break;}
+			else if (ii1 < ii2) {num=-1; break;}
+			else if (ii1 == ii2) {continue;}
+		}
+	}
+	
+	return num;
+}
+
+char *strstr1(const char* str, const char* substr)
+{
+	int ii=0;
+	int jj=0;
+	
+	// 获取str的字符串长度
+	while (str[ii]!=0) ii += 1;
+	
+	for (jj=0; str[jj]!=substr[0] && jj<ii; )
+	{
+		jj += 1;
+	}
+	
+	if (jj<ii) printf("%d\n", jj);
+	else printf("%d\n", 0);
+	
+	// printf("%d\n", jj);
+}
