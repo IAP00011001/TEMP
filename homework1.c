@@ -94,6 +94,34 @@ strcpy(gg,l);
 
 
 
+
+// 【**********结构体**********】
+// 在开头加 "#pragma pack(1)" 可以去除结构体各变量之间的缝隙
+
+// 定义结构体       struct st_girl
+//                  {
+//                      int age;
+//  			  	    int height;
+//				    	char name[51];
+//					    double weight;
+//                  }
+// 定义结构体变量   struct st_girl queen, king[3], son; 
+//
+// 初始化结构体     memset(&queen,0,sizeof(struct st_girl));
+
+// 结构体的复制     memcpy(&son, &queen, sizeof(struct st_girl));
+
+// 其他两种数据结构：枚举、共同体
+
+// 对数组清零的方法：      memset(queen,0,sizeof(queen));
+//                         bzero(queen,sizeof(queen));
+
+// 对结构体清零的方法：    memset(&queen,0,sizeof(struct st_girl));
+//                         bzero(&queen,sizeof(struc st_girl));
+
+
+
+
 /*
 #include <stdio.h>
 
@@ -1324,7 +1352,7 @@ double ROUND(const double x)
 
 
 // 作业 1)
-
+/*
 #include <stdio.h>
 #include <string.h>
 
@@ -1664,3 +1692,49 @@ char *strstr1(const char* str, const char* substr)
 	
 	// printf("%d\n", jj);
 }
+*/
+
+
+
+// ********************【结构体】*********************
+
+#include <stdio.h>
+#include <string.h>
+// #pragma pack(1)  // 去除结构体各变量之间的内存缝隙
+
+struct st_girl
+{
+	char name[50];
+	int age;
+	int height;
+	char sc[30];
+	char yz[30];
+};
+
+int main()
+{
+	struct st_girl queen, king[3], son;
+	// memset(&queen,0,sizeof(struct st_girl));
+	bzero(&queen,sizeof(struct st_girl));
+	memset(&king,0,sizeof(struct st_girl));
+	
+	strcpy(queen.name, "杨玉环");
+	queen.age=23;
+	queen.height=168;
+	strcpy(queen.sc, "均匀");
+	strcpy(queen.yz, "美滴很");
+	
+	king[0].age=24;
+	king[1].age=34;
+	king[2].age=44;
+	
+	memcpy(&son, &queen, sizeof(struct st_girl));
+	
+	printf("%s %d %d", son.name, son.age, son.height);
+	
+	// printf("%s", king.age);
+	
+	// printf("%s今天%d岁，身高%d，%s的身材而且长得还%s",queen.name, queen.age, queen.height, queen.sc, queen.yz);
+}
+
+
