@@ -122,6 +122,39 @@ strcpy(gg,l);
 
 
 
+// 【**********main函数**********】
+// int main(int argc, char *argv[], char *envp);
+
+
+
+
+// 【**********动态内存**********】
+//  void *malloc(unsigned int size);
+//  void free(void *p);
+
+//  创建指针变量时要初始化
+//  int *pi;
+//  int i;  int *p=&i;
+
+
+
+
+// 【**********文件操作**********】
+// <stdio.h>中的结构体 FILE 来操作
+
+// 定义文件指针   FILE *pf;
+// 打开文件       pf=fopen("E:/code02/TEMP/aa.txt", "w");
+// 关闭文件	      fclose(pf)
+
+// 文本文件读写
+// 文件写入       fprintf(pf, "Hello World %dst!\n",ii);
+// 文件读取		  fgets(chr, 301, pf);
+
+// 二进制文件读写
+// 文件写入       fwrite(&cc, 1, sizeof(cc), pf);
+// 文件读取       fread(&cc, 1, sizeof(cc), pf);
+
+
 /*
 #include <stdio.h>
 
@@ -1069,7 +1102,7 @@ int main()
  */
  
  /*
-//********************【字符】********************
+//  ********************【字符】********************
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1697,7 +1730,7 @@ char *strstr1(const char* str, const char* substr)
 
 
 // ********************【结构体】*********************
-
+/*
 #include <stdio.h>
 #include <string.h>
 // #pragma pack(1)  // 去除结构体各变量之间的内存缝隙
@@ -1736,5 +1769,305 @@ int main()
 	
 	// printf("%s今天%d岁，身高%d，%s的身材而且长得还%s",queen.name, queen.age, queen.height, queen.sc, queen.yz);
 }
+*/
 
 
+// ********************【格式化输出】*********************
+// #include <stdio.h>
+// #include <string.h>
+// #define MONTHS 12
+
+// int main()
+// {
+	// int days[MONTHS]={31,28,31,30,31,30,31,31,30,31,30,31};
+	// int index;
+	
+	// for (index=0; index<MONTHS; index++)
+	// {
+		// printf("Month %02d has %d days.\n", index+1, *(days + index));
+	// }
+	
+// }
+
+/*
+// #include <stdio.h>
+#include <string.h>
+#include <windows.h>
+#include <sqlext.h>
+
+struct st_girl
+{
+	char name[51];
+	int age;
+	int height;
+	double weight;
+	char sc[31];
+	char yz[31];
+};
+
+int main()
+{
+	struct st_girl *p, man;
+	memset(&p,0,sizeof(struct st_girl));
+	
+	p=&man;
+	
+	strcpy(p->name, "吕布");
+	p->age=20;
+	p->height=185;
+	strcpy(p->sc, "强壮");
+	strcpy(p->yz, "英俊");
+	
+	printf("%s %d %d %s %s\n\n", p->name, p->age, p->height, p->sc, p->yz);
+	
+	char strXMLBuffer[1024]; memset(strXMLBuffer,0,sizeof(strXMLBuffer));
+    strcpy(strXMLBuffer,"<name>西施</name><age>18</age><height>168</height><weight>48.5</weight><sc>火辣</sc><yz>漂亮</yz>");
+    
+	printf("%s", strXMLBuffer);
+}
+*/
+
+
+// ********************【main函数的参数】*********************
+/*
+#include <stdio.h>
+
+int main(int argc, char *argv[], char *envp[])
+{
+	int ii, jj;
+	jj=0;
+	
+	for (ii=0; ii<argc; ii++)
+	{
+		printf("argc=%d, argc[%d]=%s\n", argc, ii, argv[ii]);
+	}
+	
+	while (envp[jj] != 0)
+	{
+		printf("envp[%d]=%s\n", jj, envp[jj]);
+		jj++;
+	}
+}
+*/
+
+/*
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+	// 先判断mian()的输入参数是否正确
+	if (argc != 6)
+	{
+		printf("\n这个一个美男选秀程序，根据提供的选手信息"\
+		       "判断他是否符合美男的标准。\n\n");
+		printf("用法：hw name age height sc yz\n");
+		// printf("【各个参数的解释如下】\n");
+		printf("---name：参赛选手的名字。\n");
+		printf("---age：参赛选手的年龄。\n");
+		printf("---height：参赛选手的身高，单位cm。\n");
+		printf("---sc：参赛选手的身材，包括瘦弱、一般、健壮。\n");
+		printf("---yz：参赛选手的颜值，包括丑陋、平凡、俊美。\n\n");
+		printf("例如：hw 吕布 20 185 健壮 俊美\n");
+		
+		return -1;
+	}
+	
+	printf("你输入参赛选手的信息是：姓名（%s）、年龄（%s）、身高（%s）、身材（%s）、颜值（%s）。\n",\
+	       argv[1], argv[2], argv[3], argv[4], argv[5]);
+	printf("正在计算中，请稍等......\n");
+	
+	if (((atoi(argv[2]) >= 18) && (atoi(argv[2]) < 25)) ||
+	   ((atoi(argv[3]) >= 175) && (atoi(argv[3]) < 185)) ||
+	   ((strcmp(argv[4], "健壮")) == 0) ||
+	   ((strcmp(argv[5], "俊美")) == 0))
+	   {
+		   printf("%s是个美男", argv[1]);
+	   }
+	else 
+	{
+		printf("%s不是美男", argv[1]);
+	}
+}
+*/
+
+
+
+// ********************【动态内存管理】*********************
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct st_girl
+{
+	char name[51];
+	int age;
+	int height;
+	char sc[31];
+	char yz[31];
+};
+
+int main(int argc, char *argv[])
+{
+	// 分配不同数据类型的指针(初始化)
+	int *pi = (int *)malloc(sizeof(int));    // 整型
+	long *pl = (long *)malloc(sizeof(long));    // 长整型
+	double *pd = (double *)malloc(sizeof(double));    // 浮点型
+	char *pc = (char *)malloc(sizeof(char));    // 字符型
+	struct st_girl *ps = (struct st_girl *)malloc(sizeof(struct st_girl));    // 结构体型
+    
+	// 显示已分配的内存大小
+	printf("*pi=%d, *pl=%d, *pd=%d, *pc=%d\n", sizeof(*pi), sizeof(*pl), sizeof(*pd), sizeof(*pc));
+    
+	// 给指针赋值
+	*pi=10;
+	*pl=20;
+	*pd=10.5;
+	strcpy(pc, "吕布");
+
+	// 给结构体赋值
+    strcpy(ps->name, "貂蝉");
+	ps->age=21;
+	ps->height=158;
+	strcpy(ps->sc, "苗条");
+	strcpy(ps->yz, "好看");
+
+	printf("name=%s, age=%d, height=%d, sc=%s, yz=%s\n", ps->name, ps->age, ps->height, ps->sc, ps->yz);
+    
+	// 指针变量的内存大小
+	// printf("%d  %ld  %lf  %d\n", *pi, *pl, *pd, *pc);
+
+	// 释放动态内存  ???
+	free(pi); *pi=0;
+	free(pl); *pl=0;
+	free(pd); *pd=0;
+	free(pc); *pc=0;
+
+	// printf("%d  %ld  %lf  %d\n", pi, pl, pd, pc);
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+ 
+int main()
+{
+	int i=10;
+	int *ip=0;
+
+	ip = &i;
+
+    char name[100];
+	memset(name, 0, sizeof(name));
+
+	strcpy(name, "Hellor World");
+
+	char *cp=0;
+
+	cp=name;
+
+	printf("name=%s\n", name);
+	printf("&name=%p\n", name);
+	printf("&cp=%p\n", cp);
+	printf("cp=%s\n", cp);
+	
+	printf("&ip=%p\n", ip);
+	printf("ip=%d\n", *ip);
+    
+}
+*/
+
+
+
+// ********************【文件操作】*********************
+
+/*
+// 【文本文件读、写】
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[])
+{
+	// 定义文件的访问方式
+	char FileWay[5];
+	strcpy(FileWay, "r");    // r-读 w-写 a-追加；r+-读写 w+-读写 a+-读写
+
+	// 定义文件指针*pf，并初始化
+	FILE *pf=NULL;
+    
+	// 打开文件
+	// 判断文件是否存在
+	if ((pf=fopen("E:/code02/TEMP/aa.txt", FileWay)) == NULL)
+	{
+		puts("Error, no file named aa.txt");
+		puts("Please check you address again");
+		return -1;
+	}
+
+    // 【文件写入】
+	// 若文件存在，则写入以下内容
+	int ii=0;
+
+    for (ii=0; ii<3; ii++)
+	{
+		fprintf(pf, "Hello World! It's the %dst input\n", ii+1);
+	}
+
+	puts("Message has been written, remember to check!\n");
+
+	// 【文件读取】
+    // 定义读取内容的存放变量，并初始化
+	char ReadMessage[301];
+	memset(ReadMessage,0,sizeof(ReadMessage));
+    
+    for (;(fgets(ReadMessage, 301, pf)) != NULL;)
+	{
+		printf("%s", ReadMessage);
+	}
+
+    // while (1)
+	// {
+	// 	if (fgets(ReadMessage, 301, pf) == 0) break;
+	// 	printf("%s", ReadMessage);
+	// }
+
+	// 关闭文件
+	fclose(pf);
+}
+*/
+
+
+// 【二进制文件读、写】
+
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char *argv[])
+{
+	// 定义文件指针*pf，并初始化
+	FILE *pf;
+
+	// 定义测试变量
+	char cc[51];
+	memset(cc,0,sizeof(cc));
+
+	strcpy(cc, "你好世界");
+
+	// 打开文件
+	if ((pf=fopen("E:/code02/TEMP/bb.dat", "w")) == NULL)
+	{
+		puts("Error, no file named bb.dat");
+		puts("Please check you address again");
+		return -1;
+	}
+
+	// 文件写入
+	fwrite(&cc, 1, sizeof(cc), pf);
+
+	// 文件关闭
+	fclose(pf);
+}
