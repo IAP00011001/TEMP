@@ -114,10 +114,10 @@ strcpy(gg,l);
 // 其他两种数据结构：枚举、共同体
 
 // 对数组清零的方法：      memset(queen,0,sizeof(queen));
-//                         bzero(queen,sizeof(queen));
+//                       bzero(queen,sizeof(queen));
 
 // 对结构体清零的方法：    memset(&queen,0,sizeof(struct st_girl));
-//                         bzero(&queen,sizeof(struc st_girl));
+//                       bzero(&queen,sizeof(struc st_girl));
 
 
 
@@ -133,7 +133,7 @@ strcpy(gg,l);
 //  void free(void *p);
 
 //  创建指针变量时要初始化
-//  int *pi;
+//  int *pi=NULL;
 //  int i;  int *p=&i;
 
 
@@ -153,6 +153,22 @@ strcpy(gg,l);
 // 二进制文件读写
 // 文件写入       fwrite(&cc, 1, sizeof(cc), pf);
 // 文件读取       fread(&cc, 1, sizeof(cc), pf);
+
+// 文件定位
+// 当前位置字节数    long ftell(FILE *pf);
+// 移动到开头位置    void rewind(FILE *pf);
+// 移动到任意位置    int fseek(FILE *pf, long offset, intorigin);
+//                  offset：偏移量
+//                  origin：0-开头；1-当前；2-末尾
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -2042,32 +2058,78 @@ int main(int argc, char *argv[])
 
 
 // 【二进制文件读、写】
+/*
+#include <stdio.h>
+#include <string.h>
+
+// 定义测试结构体
+struct myson
+{
+	char name[51];
+	int age;
+};
+
+int main(int argc, char *argv[])
+{
+	// 定义文件指针*pf，并初始化
+	FILE *pf=NULL;
+    
+	// // 定义测试变量，并赋值
+	// int age;
+	// double height;
+	// char name[51];
+	// memset(name, 0, sizeof(name));
+    
+	// age=10;
+	// height=509.751;
+	// strcpy(name, "吕布贼拉拉滴帅~");
+
+	// 结构体赋值
+	struct myson son;
+	memset(&son, 0, sizeof(struct myson));
+
+	strcpy(son.name, "个");
+	son.age=20;
+
+	// 打开文件
+	if ((pf=fopen("E:/code02/TEMP/bb.txt", "w")) == NULL)
+	{
+		puts("Error, no file named bb.txt");
+		puts("Please check you address again");
+		return -1;
+	}
+
+	// 【文件写入】
+	fwrite(&son, 1, sizeof(son), pf);
+	// fwrite(&age, 1, sizeof(age), pf);
+	// fwrite(&height, 1, sizeof(height), pf);
+	// fwrite(name, 1, sizeof(name), pf);
+
+	// 【文件读取】
+	while (1)
+	{
+		if (fread(&son, 1, sizeof(son), pf) == 0) break;
+		printf("name=%s, age=%d\n", son.name, son.age);
+	}
+	// for (; fread(&son, 1, sizeof(son), pf) != 0;)
+	// {
+	// 	// printf("age=%d, height=%.3lf\n", age, height);
+	// 	printf("name=%s, age=%d\n", son.name, son.age);
+	// }
+
+	// 文件关闭
+	fclose(pf);
+}
+*/
+
+// 【文件定位】
 
 #include <stdio.h>
 #include <string.h>
 
 int main(int argc, char *argv[])
 {
-	// 定义文件指针*pf，并初始化
+	// 定义文件指针
 	FILE *pf;
-
-	// 定义测试变量
-	char cc[51];
-	memset(cc,0,sizeof(cc));
-
-	strcpy(cc, "你好世界");
-
-	// 打开文件
-	if ((pf=fopen("E:/code02/TEMP/bb.dat", "w")) == NULL)
-	{
-		puts("Error, no file named bb.dat");
-		puts("Please check you address again");
-		return -1;
-	}
-
-	// 文件写入
-	fwrite(&cc, 1, sizeof(cc), pf);
-
-	// 文件关闭
-	fclose(pf);
+	
 }
