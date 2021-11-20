@@ -2010,7 +2010,7 @@ int main(int argc, char *argv[])
 {
 	// 定义文件的访问方式
 	char FileWay[5];
-	strcpy(FileWay, "r");    // r-读 w-写 a-追加；r+-读写 w+-读写 a+-读写
+	strcpy(FileWay, "w");    // r-读 w-写 a-追加；r+-读写 w+-读写 a+-读写
 
 	// 定义文件指针*pf，并初始化
 	FILE *pf=NULL;
@@ -2122,6 +2122,7 @@ int main(int argc, char *argv[])
 }
 */
 
+/*
 // 【文件定位】
 
 #include <stdio.h>
@@ -2132,4 +2133,138 @@ int main(int argc, char *argv[])
 	// 定义文件指针
 	FILE *pf;
 	
+	// 打开文件
+	if ((pf=fopen("E:/code02/TEMP/bb.txt", "r")) == NULL)
+	{
+		puts("Error, no file named bb.txt");
+		puts("Please check you address again");
+		return -1;
+	}
+
+	// 移动指针
+	fseek(pf, 600, 0);
+
+	// 输出指针位置
+	printf("=%ld=", ftell(pf));
 }
+*/
+
+
+
+// 作业 1、2、3、4)
+
+#include <stdio.h>
+#include <string.h>
+
+// 定义结构体myson
+struct myson
+{
+	char name[51];     // 姓名
+	int age;           // 年龄
+	int height;        // 身高cm
+	double weight;     // 体重kg
+	char sc[51];       // 身材
+	char yz[51];       // 颜值
+};
+
+int main(int argc, char *argv[])
+{
+	// 定义结构体变量、指针，并初始化
+	struct myson GoodSon[5];
+	// struct myson (*p_GoodSon)[5] = &GoodSon;
+	memset(&GoodSon, 0, sizeof(struct myson));
+
+	// 指针初始化
+	// p_GoodSon = &GoodSon[5];
+
+	// 结构体变量赋值
+	// 定义4个BadSon的数组并初始化、赋值
+	int counts;         // 计数器
+	char name5[5][51] = {"吕布", "刘备", "关羽", "张飞", "诸葛亮"};
+	int age5[50] = {21, 2, 28, 23, 30};
+	int height5[50] = {185, 165, 192, 170, 180};
+	double weight5[50] = {70.5, 60.5, 75.7, 95.5, 70.5};
+	char sc5[5][51] = {"健壮", "匀称", "高挑", "魁梧", "仙风道骨"};
+	char yz5[5][51] = {"俊美", "威严", "勇猛", "憨憨", "智者"};
+    
+	// GoodSon利用数组赋值
+	for (counts=0; counts<5; counts++)
+	{
+		strcpy(GoodSon[counts].name, name5[counts]);
+		GoodSon[counts].age = age5[counts];
+		GoodSon[counts].height = height5[counts];
+		GoodSon[counts].weight = weight5[counts];
+		strcpy(GoodSon[counts].sc, sc5[counts]);
+		strcpy(GoodSon[counts].yz, yz5[counts]);
+	}
+
+
+	// 定义文件指针，定义文件读写方式并赋值
+	FILE *p_FILE = NULL;
+
+	char FileWay[10];
+	memset(FileWay, 0, sizeof(FileWay));
+
+	strcpy(FileWay, "r");
+
+	// 判断文件是否存在
+	if ((p_FILE = fopen("E:/C/t1.txt", FileWay)) == NULL)
+	{
+		puts("Error, the file open failed");
+	}
+/*
+	// 二进制文件写入
+	for (counts=0; counts<5; counts++)
+	{
+		fwrite(&GoodSon[counts], 1, sizeof(struct myson), p_FILE);
+	}
+
+    // 二进制文件读取
+	counts = 0;
+	while (1)
+	{
+		if (fread(&GoodSon, 1, sizeof(struct myson), p_FILE) == 0)
+		{
+			break;
+		}
+
+		printf("%s，%d，%d，%.1lf，%s，%s", 
+		       GoodSon[counts].name,
+			   GoodSon[counts].age, 
+			   GoodSon[counts].height, 
+			   GoodSon[counts].weight, 
+			   GoodSon[counts].sc, 
+			   GoodSon[counts].yz);
+		
+		counts ++;
+	}
+*/
+
+	// // 文本文件写入
+	// for (counts=0; counts<5; counts++)
+	// {
+	// 	fprintf(p_FILE, "%s，%d，%d，%lf，%s，%s\n", 
+	// 	        GoodSon[counts].name,
+	// 	        GoodSon[counts].age,
+	// 	        GoodSon[counts].height,
+	// 	        GoodSon[counts].weight,
+	// 	        GoodSon[counts].sc,
+	// 	        GoodSon[counts].yz);
+	// }
+
+	// 文本文件读取
+	// 定义读取内容存储变量
+    char readMessage[301];
+	memset(readMessage,0,sizeof(readMessage));
+
+	for (; (fgets(readMessage, 301, p_FILE)) != NULL;)
+	{
+		printf("%s", readMessage);
+	}
+
+
+	// 文件关闭
+	fclose(p_FILE);
+
+}
+
