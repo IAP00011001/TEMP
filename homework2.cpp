@@ -16,6 +16,39 @@
 
 
 
+// 【**********引用**********】
+// 定义格式：数据类型 &引用名 = 目标变量名;
+// 例如：           int ii;
+//                  int &rii = ii;   // rii是ii的引用；同意不同名
+
+
+
+// 【**********运算符重载**********】
+// 运算符重载函数：operator
+// 例如： 重载==  operator==
+
+
+
+// 【**********string类**********】
+// 使用string类
+//                    using namespace std;
+//                    string str1;
+//或者
+//                    std::string str2;
+
+// string类的重载操作符
+// 赋值：=                        std::string str = "aa";
+// 运算：== !=  >  <  >=  <=      if (str1 == str2) printf("相等\n");
+// 连接：+ +=                     str = "samuel" + "." + "miller"
+// 位置：[]                       printf("str[0]=%c, str[1]=%c", str[0], str[1]);
+
+// string类的成员函数  const char *c_str();  // 返回动态存放的字符串地址
+//                     int size();           // 返回字符串的大小
+//                     int length();         // 返回字符串的长度 
+//                     void clear();         // 清空字符串
+
+
+
 
 
 // 【**********函数重载**********】
@@ -159,119 +192,197 @@ int main(int argc, char *argv[])
 */
 
 
+
+
+// 【**********引用**********】
+/*
+#include <stdio.h>
+
+class tt
+{
+	public:
+	    int func(int *pa);
+        int func(int &ra);
+};
+
+
+
+int  main()
+{
+	int ii=0;
+	
+	tt t_return;
+	
+	t_return.func(&ii);
+	printf("1 ii=%d\n", ii);
+	
+	t_return.func(ii);
+	printf("2 ii=%d\n", ii);
+}
+
+int tt::func(int *pa)
+{
+	*pa = 20;
+	return 0;
+}
+
+int tt::func(int &ra)
+{
+	ra = 30;
+	return 0;
+}
+*/
+
+/*
+#include <stdio.h>
+
+int value;
+
+class tt
+{
+	public:
+	    
+		int fun1(int ii);
+		
+};
+
+int &fun2(int ii);
+
+int main()
+{
+	tt t_return;
+	
+	int aa = t_return.fun1(1);
+	printf("aa=%d\n", aa);
+	
+	int &bb = fun2(1);
+	printf("bb=%d\n", bb);
+}
+
+int tt::fun1(int ii)
+{
+	value = 10+ii;
+	return value;
+}
+
+int &fun2(int ii)
+{
+	int jj;
+	value = 20+ii;
+	jj = 20+ii;
+	// return value;
+	return jj;
+}
+*/
+
+
+
+
+
+// 【**********运算符重载**********】
+/*
 #include <stdio.h>
 #include <string.h>
-#include <stdarg.h>
- 
-// 文件操作类声明
-class CFile
+
+class GGirl
 {
-    private:
-        FILE *m_fp;        // 文件指针
-        bool  m_bEnBuffer; // 是否启用缓冲区，true-启用；false-不启用
-    
-    public:
-        CFile();   // 类的构造函数
-        CFile(bool bEnBuffer);   // 类的构造函数
-        
-        ~CFile();   // 类的析构函数
-        
-        void EnBuffer(bool bEnBuffer=true);  // 启、禁用缓冲区
-        
-        // 打开文件，参数与fopen相同，打开成功true，失败返回false         
-        bool Open(const char *filename,const char *openmode);
-        
-        // 调用fprintf向文件写入数据
-        void Fprintf(const char *fmt,... );
-        
-        // 调用fgets从文件中读取一行
-        bool Fgets(char *strBuffer,const int ReadSize);
-        
-        // 关闭文件指针
-        void Close();
+	public:
+	    char name_[50];
+		char sc_[30];
+		
+		bool operator==(const GGirl &Girl);
+		bool operator!=(const GGirl &Girl);
 };
- 
-int main(int argc,char *argv[])
+
+int main()
 {
-    if (argc !=2) { printf("请输入待打开的文件名。\n"); return -1; }
-    
-    CFile File;
-    
-    if (File.Open(argv[1],"r")==false) { printf("File.Open(%s)失败。\n",argv[1]); return -1; }
-    
-    char strLine[301];
-    
-    while (true)
-    { // 从文件中读取每一行
-        if (File.Fgets(strLine,300)==false) break;
-    
-        printf("%s",strLine);   // 把从文件中读到的内容显示到屏幕
-    }
-}
- 
-CFile::CFile()   // 类的构造函数
-{
-    m_fp=0;
-    m_bEnBuffer=true;
-}
- 
-CFile::CFile(bool bEnBuffer)   // 类的构造函数
-{
-    m_fp=0;
-    m_bEnBuffer=bEnBuffer;
-}
- 
-// 关闭文件指针
-void CFile::Close()
-{
-    if (m_fp!=0) fclose(m_fp);  // 关闭文件指针
-    m_fp=0;
-}
- 
-CFile::~CFile()   // 类的析构函数
-{
-    Close();  // 调用Close释放资源
-}
- 
-// 启、禁用缓冲区
-void CFile::EnBuffer(bool bEnBuffer)
-{
-    m_bEnBuffer=bEnBuffer;
-}
- 
-// 打开文件，参数与fopen相同，打开成功true，失败返回false         
-bool CFile::Open(const char *filename,const char *openmode)
-{
-    Close();  // 打开新的文件之前，如果已经打开了文件，关闭它。
-    
-    if ( (m_fp=fopen(filename,openmode)) == 0 ) return false;
-    
-    return true;
-}
- 
-// 调用fprintf向文件写入数据
-void CFile::Fprintf(const char *fmt,...)
-{
-    if ( m_fp == 0 ) return;
-    
-    va_list arg;
-    va_start(arg,fmt);
-    vfprintf(m_fp,fmt, arg);
-    va_end(arg);
-    
-    if ( m_bEnBuffer == false ) fflush(m_fp);
-}
- 
-// 调用fgets从文件中读取一行
-bool CFile::Fgets(char *strBuffer,const int ReadSize)
-{
-    if ( m_fp == 0 ) return false;
-    
-    memset(strBuffer,0,ReadSize);
-    
-    if (fgets(strBuffer,ReadSize,m_fp) == 0) return false;
-    
-    return true;
+	GGirl g1, g2;
+	
+	strcpy(g1.name_, "西施");
+	strcpy(g2.name_, "西施s");
+	
+	if (g1 == g2) printf("这两个人是同一人\n");
+	else printf("这是两个人\n");
+	
+	strcpy(g1.sc_, "aa");
+	strcpy(g2.sc_, "aaa");
+	
+	if (g1 != g2) printf("这俩人身材不同");
+	else printf("这俩人身材一致");
 }
 
+bool GGirl::operator==(const GGirl &Girl)
+{
+	// 若两个姓名相等就返回ture
+	if (strcmp(name_, Girl.name_) == 0) return true;
+	else return false;
+}
 
+bool GGirl::operator!=(const GGirl &Girl)
+{
+	// 若两个身材相同就返回true
+	if (strcmp(sc_, Girl.sc_) == 0) return false;
+	else return true;
+}
+*/
+
+
+
+
+
+// 【**********string类**********】
+/*
+#include <stdio.h>
+#include <string.h>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	char chr1[51];
+	memset(chr1, 0, sizeof(chr1));
+	strcpy(chr1, "aaa");
+	
+	string chr2="bbb";
+	
+	if (chr1 != chr2) printf("chr1=%s, chr2=%s, 不相等\n", chr1, chr2.c_str());
+	else printf("chr1=%s, chr2=%s, 相等\n", chr1, chr2.c_str());
+	
+	printf("chr2.size()=%d\n", chr2.size());
+	printf("chr2.length()=%d\n", chr2.length());
+	
+	// 清楚字符串
+	chr2.clear();
+	
+	printf("chr2.size()=%d\n", chr2.size());
+	printf("chr2.length()=%d\n", chr2.length());
+}
+*/
+
+/*
+#include <stdio.h>
+#include <string.h>
+#include <string>
+
+int main()
+{
+	std::string chr;
+	
+	chr = "samuel";
+	printf("chr=%s\n", chr.c_str());
+	
+	chr = chr + "." + "miller";
+	printf("chr=%s\n", chr.c_str());
+	
+	chr = "sam";
+	printf("chr=%s\n", chr.c_str());
+	
+	chr = "Hello World";
+	printf("chr=%s\n", chr.c_str());
+	printf("chr.size()=%d, chr.length()=%d\n", chr.size(), chr.length());
+	
+	// 输出chr存储的每一个字符
+	for (int i=0; i<chr.length(); i++) printf("chr[%d]=%c\n", i, chr[i]);
+}
+*/
