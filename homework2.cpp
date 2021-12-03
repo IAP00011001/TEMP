@@ -50,6 +50,64 @@
 
 
 
+// 【**********vector容器**********】
+// 会用容器vector（#inlcude <vector>）
+//
+//                      using namespace std;
+//                      vector<int> vint;
+// 或者
+//                      std::vector<int> vint;      
+
+// 指向容器第一个元素位置        vint.begin();
+// 指向容器最后一个元素位置      vint.end();
+// 在容器尾部加一个元素          vint.push_back();
+// 在容器指定位置加一个元素      vint.insert(位置, 值);    
+// 删除容器指定位置元素          vint.erase(位置);
+// 删除容器所有元素              vint.clear();
+// 判断容器是否为空              vint.empty();  0-非空；1-空
+// 返回容器元素个数              vint.size();
+// 容器排序函数                  sort(vint.begin(), vint.end());
+// 
+
+
+
+
+
+
+// 【**********动态内存管理**********】
+// 申请内存：new
+// 释放内存：delete
+
+// datatype *p = new datatype;
+// { ... }
+// delete p;
+
+
+
+
+// 【**********类的继承与派生**********】
+// 单继承
+// class <子类名>:<继承方式> <父类名>
+//  {
+//       ....    
+//  };
+
+// 多继承
+// class <子类名>:<继承方式1><父类名1>, <继承方式2><父类名2>, ...   
+// { ... };
+
+// 虚函数的定义     virtual int Show(); 
+
+
+
+
+// 【**********类的多态**********】
+
+
+
+
+
+
 
 // 【**********函数重载**********】
 /*
@@ -570,18 +628,18 @@ int main()
 }
 */
 
-
+/*
 #include <stdio.h>
 #include <string.h>
 #include <vector>
 #include <string>
 #include <algorithm>
 
-// struct myson
-// {
-//     char name[51];
-//     int age;
-// };
+struct myson
+{
+    char name[51];
+    int age;
+};
 
 class sx
 {
@@ -592,7 +650,7 @@ class sx
         bool sortbyname(const sx &p1, const sx &p2);
         bool sortbyage(const sx &p1, const sx &p2);
 
-        int PrintfInt(std::vector<std::string> v);
+        int PrintfInt(std::vector<struct myson> v);
 };
 
 bool sortbyname(const sx &p1, const sx &p2)
@@ -607,7 +665,7 @@ bool sortbyage(const sx &p1, const sx &p2)
     return false;
 }
 
-int sx::PrintfInt(std::vector<std::string> v)
+int sx::PrintfInt(std::vector<struct myson> v)
 {
     if (v.empty() == 0)
     {
@@ -625,31 +683,40 @@ int sx::PrintfInt(std::vector<std::string> v)
 int main()
 {
     sx ssxx;    // 类
-    // struct myson son;    // 结构体
-    std::vector<std::string> vson;    // 存放结构体的容器
+    struct myson son;    // 结构体
+    std::vector<struct myson> vson;    // 存放结构体的容器
+    // std::vector<class sx> vson; 
 
-    // // 结构体赋值
-    // strcpy(son.name, "吕布");
-    // son.age = 21;
-    // vson.push_back(son);
+    // 结构体赋值
+    strcpy(son.name, "吕布");
+    son.age = 21;
+    vson.push_back(son);
 
-    // strcpy(son.name, "诸葛亮");
-    // son.age = 18;
-    // vson.push_back(son);'
+    strcpy(son.name, "诸葛亮");
+    son.age = 18;
+    vson.push_back(son);
 
-    strcpy(ssxx.name, "aa");
-    vson.push_back(ssxx.name);
+    // 类赋值
+    // strcpy(ssxx.age, "11");
+    // vson.push_back(ssxx.name);
 
-     strcpy(ssxx.name, "bb");
-    vson.push_back(ssxx.name);
+    //  strcpy(ssxx.age, "22");
+    // vson.push_back(ssxx.name);
 
-    sort(vson.begin(), vson.end());
+    sort(vson.begin(), vson.end(), sortbyage);
+
+    printf("vson.size()=%d\n", vson.size());
 
 
-    ssxx.PrintfInt(vson);
+    // // ssxx.PrintfInt(vson);
+    // for (int i = 0; i < vson.size(); i++)
+    //     {
+    //         printf("vson[%d]=%s\n",
+    //                i, vson[i]);
+    //     }
 
 }
-
+*/
 
 
 /*
@@ -665,4 +732,246 @@ class CRand
         ~CRand();
 
         void Rand(const int minvalue, const int maxvalue, const int totalcount, const bool brep=true);
-};*/
+};
+
+void Rand(const int minvalue, const int maxvalue, const int totalcount, const bool brep=true)
+{
+
+}
+*/
+
+
+
+
+
+
+// 【**********类的继承与派生**********】
+/*
+#include <stdio.h>
+#include <string.h>
+
+// 定义父类
+class MySon
+{
+    public:
+        char name_[51];   // 姓名
+        int age_;         // 年龄
+        int height_;      // 身高cm
+        char sc_[30];     // 身材：矮小、一般、健壮
+        char yz_[30];     // 颜值：丑陋、平凡、俊美
+
+        int ShowMessage()
+        {
+            printf("姓名：%s，年龄：%d，身高：%d，身材：%s，颜值：%s\n", 
+                   name_, age_, height_, sc_, yz_);
+
+            return 0;
+        }
+};
+
+// 派生子类
+class Son:public MySon 
+{
+    public:
+        char ch_[51];      // 称号
+        char palace_[51];  // 居住的宫殿
+        int sal_;          // 俸禄
+
+        int Show()
+        {
+            printf("姓名：%s，称号：%s，宫殿：%s，俸禄：%d两\n",
+                   name_, ch_, palace_, sal_);
+
+            return 0;
+        }
+};
+
+
+int main()
+{
+    Son kids;
+
+    strcpy(kids.name_, "吕布");
+    kids.age_ = 21;
+    kids.height_ = 185;
+    strcpy(kids.sc_, "健壮");
+    strcpy(kids.yz_, "俊美");
+    strcpy(kids.ch_, "美男子");
+    strcpy(kids.palace_, "汴京");
+    kids.sal_ = 200;
+
+    kids.Show();
+}
+*/
+
+
+/*
+#include <stdio.h>
+
+// 定义减法类
+class JianFa
+{
+    public:
+        int a_;
+        int b_;
+
+        int jian_fa(const int a, const int b, int c)
+        {
+            c = a-b;
+            return c;
+        }
+};
+
+// 定义加法类
+class JiaFa
+{
+    public:
+        int aa_;
+        int bb_;
+
+        int jia_fa(const int aa, const int bb, int cc)
+        {
+            cc = aa+bb;
+            return cc;
+        }
+};
+
+// 派生乘法子类
+class ChengFa:public JianFa, public JiaFa
+{
+    public:
+        int aaa;
+        int bbb;
+
+        int cheng_fa(const int aaa, const int bbb, int ccc)
+        {
+            ccc = aaa*bbb;
+            return ccc;
+        }
+};
+
+
+
+// 主函数
+int main()
+{
+    ChengFa cf;
+
+    int i = cf.jia_fa(2, 3, 0);
+    int j = cf.jian_fa(10, 4, 0);
+    int k = cf.cheng_fa(i, j, 0);
+
+    printf("=%d=\n", k);
+
+
+}
+*/
+
+
+
+
+// 【**********类的多态**********】
+
+#include <stdio.h>
+#include <string.h>
+
+// 定义父类
+class MySon
+{
+    public:
+        char name_[51];   // 姓名
+        int age_;         // 年龄
+        int height_;      // 身高cm
+        char sc_[30];     // 身材：矮小、一般、健壮
+        char yz_[30];     // 颜值：丑陋、平凡、俊美
+
+        virtual int Show()
+        {
+            printf("姓名：%s，年龄：%d，身高：%d，身材：%s，颜值：%s\n", 
+                   name_, age_, height_, sc_, yz_);
+
+            return 0;
+        }
+
+};
+
+// 派生子类
+class Son:public MySon 
+{
+    public:
+        char ch_[51];      // 称号
+        char palace_[51];  // 居住的宫殿
+        int sal_;          // 俸禄
+
+        int Show()
+        {
+            printf("姓名：%s，称号：%s，宫殿：%s，俸禄：%d两\n",
+                   name_, ch_, palace_, sal_);
+
+            return 0;
+        }
+};
+
+
+class OtherSon
+{
+    public:
+        char city_[31];
+        char color_[31];
+        char marry_[31];
+
+        // 定义纯虚函数
+        virtual int Show() = 0;
+};
+
+class GreatGrandSon:public OtherSon, public Son
+{
+    public:
+        int Show()
+        {
+            printf("称号：%s，国籍：%s，肤色：%s，婚姻状况：%s\n",
+                   ch_, city_, color_, marry_);
+            
+            return 0;
+        }
+};
+
+
+
+// 主函数
+int main()
+{
+    Son kids;
+    GreatGrandSon child;
+
+    strcpy(kids.name_, "吕布");
+    kids.age_ = 21;
+    kids.height_ = 185;
+    strcpy(kids.sc_, "健壮");
+    strcpy(kids.yz_, "俊美");
+    strcpy(kids.ch_, "美男子");
+    strcpy(kids.palace_, "汴京");
+    kids.sal_ = 200;
+    
+    strcpy(child.ch_, "美男子");
+    strcpy(child.city_, "中国");
+    strcpy(child.color_, "黄色");
+    strcpy(child.marry_, "单身");
+
+    
+
+    MySon *pms;  // 父类指针
+    Son *ps;     // 子类指针
+    GreatGrandSon *pggs;  // 子类指针
+
+    pms = ps = &kids;
+    pggs = &child;
+
+    pms->Show();
+    ps->Show();
+    pggs->Show();
+
+
+    return 0;
+    
+}
